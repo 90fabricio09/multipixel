@@ -92,6 +92,7 @@ const Home = () => {
             <div className="home">
                 {/* Header/Navigation */}
                 <header className="header">
+                    <br>
                     <nav className="nav">
                         <div className="nav-logo">
                             <a href="/"><img src={Logo} alt="MultiPixel Logo" className="nav-logo-img" /></a>
@@ -440,3 +441,4 @@ const Home = () => {
 };
 
 export default Home;
+
