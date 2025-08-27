@@ -41,21 +41,22 @@ html {
 }
 
 .home {
-    min-height: 80vh;
+    min-height: 100vh;
     background: #000000;
     background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(120, 0, 200, 1) 75%);
     background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(120, 0, 200, 1) 75%);
     background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(120, 0, 200, 1) 75%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#7800C8", GradientType=0);
     color: white;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* Header/Navigation */
 .header {
-    margin-top: 30px;
     padding: 1rem;
     background: transparent;
+    position: relative;
+    z-index: 10;
 }
 
 .nav {
@@ -72,7 +73,7 @@ html {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1002;
     padding: 5px;
 }
 
@@ -150,11 +151,12 @@ html {
 
 /* Hero Section */
 .hero-section {
-    min-height: 70vh;
+    height: calc(100vh - 120px);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 2rem;
+    overflow: hidden;
 }
 
 .hero-content {
@@ -208,7 +210,6 @@ html {
     width: 400px;
     height: auto;
     filter: drop-shadow(0 10px 20px rgba(255, 215, 0, 0.3));
-    transform: scale(1.2);
 }
 
 /* Hero Text */
@@ -277,6 +278,7 @@ html {
 @media (max-width: 1024px) {
     .hero-section {
         padding: 0 1.5rem;
+        height: calc(100vh - 100px);
     }
 
     .hero-content {
@@ -347,12 +349,54 @@ html {
         align-items: center;
         gap: 2rem;
         transition: right 0.3s ease;
-        z-index: 999;
+        z-index: 1001;
+        overflow-y: auto;
+        transform: translateZ(0);
+        will-change: right;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-right.open {
-        right: 0;
+        right: 0 !important;
+        transform: translateZ(0);
+        position: fixed !important;
+        top: 0 !important;
+        left: auto !important;
+        bottom: 0 !important;
     }
+
+    /* Permitir scroll mas fechar menu automaticamente */
+    body.menu-open {
+        /* Removido overflow: hidden para permitir scroll */
+    }
+
+    /* Garantir que o menu fique sempre fixo na direita da viewport */
+    .nav-right {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 250px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1001;
+        overflow-y: auto;
+        transform: translateZ(0);
+        will-change: right;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        left: auto !important;
+        bottom: 0 !important;
+    }
+
+
 
     .nav-links {
         flex-direction: column;
@@ -380,6 +424,7 @@ html {
 @media (max-width: 600px) {
     .hero-section {
         padding: 0 1.5rem;
+        height: calc(100vh - 80px);
     }
 
     .hero-content {
@@ -529,8 +574,6 @@ html {
 .content-image {
     max-width: 100%;
     height: auto;
-    border-radius: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 
@@ -1752,5 +1795,290 @@ html {
     50% {
         opacity: 1;
         transform: scale(1.05);
+    }
+}
+
+/* Animações de Scroll Simplificadas para Home */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animações de scroll para imagens e textos */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animações específicas para diferentes elementos */
+
+.hero-graphic.animate-on-scroll {
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.hero-graphic.animate-on-scroll.animate-in {
+    transform: translateX(0);
+}
+
+.hero-text.animate-on-scroll {
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+}
+
+.hero-text.animate-on-scroll.animate-in {
+    transform: translateX(0);
+}
+
+.content-text.animate-on-scroll {
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.content-text.animate-on-scroll.animate-in {
+    transform: translateX(0);
+}
+
+.content-graphic.animate-on-scroll {
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+}
+
+.content-graphic.animate-on-scroll.animate-in {
+    transform: translateX(0);
+}
+
+/* Animações para cards de serviços */
+.service-card.animate-on-scroll {
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.6s ease-out;
+    opacity: 0;
+}
+
+.service-card.animate-on-scroll.animate-in {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Animações para cards de clientes */
+.client-card.animate-on-scroll {
+    transform: translateY(40px) scale(0.85);
+    transition: all 0.5s ease-out;
+    opacity: 0;
+}
+
+.client-card.animate-on-scroll.animate-in {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Timing escalonado para cards */
+.service-card:nth-child(1).animate-on-scroll {
+    transition-delay: 0.1s;
+}
+
+.service-card:nth-child(2).animate-on-scroll {
+    transition-delay: 0.2s;
+}
+
+.service-card:nth-child(3).animate-on-scroll {
+    transition-delay: 0.3s;
+}
+
+.client-card:nth-child(1).animate-on-scroll {
+    transition-delay: 0.1s;
+}
+
+.client-card:nth-child(2).animate-on-scroll {
+    transition-delay: 0.15s;
+}
+
+.client-card:nth-child(3).animate-on-scroll {
+    transition-delay: 0.2s;
+}
+
+.client-card:nth-child(4).animate-on-scroll {
+    transition-delay: 0.25s;
+}
+
+.client-card:nth-child(5).animate-on-scroll {
+    transition-delay: 0.3s;
+}
+
+.client-card:nth-child(6).animate-on-scroll {
+    transition-delay: 0.35s;
+}
+
+.client-card:nth-child(7).animate-on-scroll {
+    transition-delay: 0.4s;
+}
+
+/* Animações para títulos com timing escalonado */
+.white-title.animate-on-scroll {
+    transform: translateY(30px);
+    transition: all 0.8s ease-out 0.2s;
+    opacity: 0;
+}
+
+.white-title.animate-on-scroll.animate-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.white-text.animate-on-scroll {
+    transform: translateY(30px);
+    transition: all 0.8s ease-out 0.4s;
+    opacity: 0;
+}
+
+.white-text.animate-on-scroll.animate-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.pixel-title.animate-on-scroll {
+    transform: translateY(30px);
+    transition: all 0.8s ease-out 0.1s;
+    opacity: 0;
+}
+
+.pixel-title.animate-on-scroll.animate-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.pixel-description.animate-on-scroll {
+    transform: translateY(30px);
+    transition: all 0.8s ease-out 0.3s;
+    opacity: 0;
+}
+
+.pixel-description.animate-on-scroll.animate-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.pixel-diagram.animate-on-scroll {
+    transform: translateY(40px) scale(0.9);
+    transition: all 0.8s ease-out 0.5s;
+    opacity: 0;
+}
+
+.pixel-diagram.animate-on-scroll.animate-in {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.clients-title.animate-on-scroll {
+    transform: translateY(30px);
+    transition: all 0.8s ease-out 0.2s;
+    opacity: 0;
+}
+
+.clients-title.animate-on-scroll.animate-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.clients-text.animate-on-scroll {
+    transform: translateY(30px);
+    transition: all 0.8s ease-out 0.4s;
+    opacity: 0;
+}
+
+.clients-text.animate-on-scroll.animate-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Responsividade para animações */
+@media (max-width: 768px) {
+    .animate-on-scroll {
+        transform: translateY(20px);
+    }
+    
+
+    
+    .hero-graphic.animate-on-scroll,
+    .hero-text.animate-on-scroll,
+    .content-text.animate-on-scroll,
+    .content-graphic.animate-on-scroll {
+        transform: translateY(20px);
+    }
+    
+    .hero-graphic.animate-on-scroll.animate-in,
+    .hero-text.animate-on-scroll.animate-in,
+    .content-text.animate-on-scroll.animate-in,
+    .content-graphic.animate-on-scroll.animate-in {
+        transform: translateY(0);
+    }
+
+    .service-card.animate-on-scroll {
+        transform: translateY(30px) scale(0.95);
+    }
+
+    .client-card.animate-on-scroll {
+        transform: translateY(25px) scale(0.9);
+    }
+}
+
+@media (max-width: 480px) {
+    .animate-on-scroll {
+        transform: translateY(15px);
+    }
+
+
+
+    .service-card.animate-on-scroll {
+        transform: translateY(25px) scale(0.95);
+    }
+
+    .client-card.animate-on-scroll {
+        transform: translateY(20px) scale(0.9);
     }
 }
