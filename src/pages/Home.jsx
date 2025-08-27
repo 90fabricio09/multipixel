@@ -107,7 +107,7 @@ const Home = () => {
                         <p className="content-paragraph">
                             Parece bom demais pra ser verdade?
                         </p>
-                        <a href="#servicos" rel="noopener noreferrer" className="content-button">
+                        <a href="#pixel" rel="noopener noreferrer" className="content-button">
                             Veja como fazemos isso
                         </a>
                     </div>
@@ -387,4 +387,5 @@ const Home = () => {
 };
 
 export default Home;
+
 
