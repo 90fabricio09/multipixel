@@ -91,7 +91,6 @@ const Home = () => {
         <div className="homepage">
             <div className="home">
                 {/* Header/Navigation */}
-                </br>
                 <header className="header">
                     <nav className="nav">
                         <div className="nav-logo">
@@ -441,5 +440,6 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
