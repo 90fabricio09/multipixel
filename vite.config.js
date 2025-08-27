@@ -6,15 +6,19 @@ export default defineConfig({
   plugins: [react()],
   build: {
     // Otimizações para produção
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    minify: 'esbuild', // Usando esbuild como padrão (mais rápido)
+    // Alternativa: usar 'terser' se preferir mais otimizações
+    // minify: 'terser',
+    // terserOptions: {
+    //   compress: {
+    //     drop_console: true,
+    //     drop_debugger: true,
+    //   },
+    // },
+    
     // Gera source maps para debugging
     sourcemap: false,
+    
     // Otimiza o chunking
     rollupOptions: {
       output: {
@@ -25,11 +29,13 @@ export default defineConfig({
       },
     },
   },
+  
   // Otimizações de servidor de desenvolvimento
   server: {
     port: 3000,
     open: true,
   },
+  
   // Preload de assets críticos
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
