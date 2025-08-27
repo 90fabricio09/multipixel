@@ -107,7 +107,7 @@ const Home = () => {
                         <p className="content-paragraph">
                             Parece bom demais pra ser verdade?
                         </p>
-                        <a href="https://wa.me/5511978327970" target="_blank" rel="noopener noreferrer" className="content-button">
+                        <a href="#servicos" rel="noopener noreferrer" className="content-button">
                             Veja como fazemos isso
                         </a>
                     </div>
@@ -387,3 +387,4 @@ const Home = () => {
 };
 
 export default Home;
+
