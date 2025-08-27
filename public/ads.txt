@@ -1,0 +1,2 @@
+# Arquivo ads.txt para futuras integrações com publicidade
+# Adicione aqui as entradas necessárias quando implementar publicidade

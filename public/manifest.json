@@ -1,0 +1,21 @@
+{
+  "name": "MultiPixel - Comunicação Inteligente",
+  "short_name": "MultiPixel",
+  "description": "Especialistas em comunicação social e tecnologia. Integrando comunicação e tecnologia com inteligência.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7800C8",
+  "theme_color": "#7800C8",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/3D_logo.png",
+      "sizes": "120x120",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "pt-BR",
+  "dir": "ltr"
+}
